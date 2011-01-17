@@ -11,7 +11,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartGame"></activity>
+		<activity android:name=".CreateCharacter"></activity>
+		<activity android:name=".LoadGame"></activity>
+		<activity android:name=".Startgame"></activity>
 		<activity android:name=".Help"></activity>
 		<activity android:name=".Options"></activity>
 		<activity android:name=".Credits"></activity>

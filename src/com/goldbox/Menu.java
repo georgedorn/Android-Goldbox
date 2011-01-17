@@ -20,7 +20,9 @@ import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.decorator.ColorMenuItemDecorator;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.KeyEvent;
 
 
@@ -29,8 +31,8 @@ public class Menu extends BaseGameActivity implements IOnMenuItemClickListener{
 	private int CAMERA_WIDTH = 480;
 	private int CAMERA_HEIGHT = 720;
 
-	protected static final int MENU_RESET = 0;
-	protected static final int MENU_QUIT = MENU_RESET + 1;
+	protected static final int MENU_CREATE_CHARACTER = 0;
+	protected static final int MENU_QUIT = MENU_CREATE_CHARACTER + 1;
 
 	protected Camera mCamera;
 
@@ -59,7 +61,8 @@ public class Menu extends BaseGameActivity implements IOnMenuItemClickListener{
 		this.mFontTexture = new Texture(256, 256, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
 
 		FontFactory.setAssetBasePath("font/");
-		this.mFont = FontFactory.createFromAsset(this.mFontTexture, this, "Plok.ttf", 48, true, Color.WHITE);
+//		this.mFont = FontFactory.createFromAsset(this.mFontTexture, this, "Plok.ttf", 48, true, Color.WHITE);
+		this.mFont = new Font(this.mFontTexture, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 48, true, Color.BLACK);
 		this.mEngine.getTextureManager().loadTexture(this.mFontTexture);
 		this.mEngine.getFontManager().loadFont(this.mFont);
 	}
@@ -72,8 +75,10 @@ public class Menu extends BaseGameActivity implements IOnMenuItemClickListener{
 	@Override
 	public boolean onMenuItemClicked(final MenuScene pMenuScene, final IMenuItem pMenuItem, final float pMenuItemLocalX, final float pMenuItemLocalY) {
 		switch(pMenuItem.getID()) {
-			case MENU_RESET:
-				/* Do nothing */
+			case MENU_CREATE_CHARACTER:
+				/* Start the Create Character activity */
+				Intent createCharacterIntent = new Intent(Menu.this, CreateCharacter.class);
+				startActivity(createCharacterIntent);
 				return true;
 			case MENU_QUIT:
 				/* End Activity. */
@@ -99,9 +104,9 @@ public class Menu extends BaseGameActivity implements IOnMenuItemClickListener{
 
 	private MenuScene createMenuScene() {
 		MenuScene menuScene = new MenuScene(this.mCamera);
-		final IMenuItem resetMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_RESET, this.mFont, "RESET"), 1.0f,0.0f,0.0f, 0.0f,0.0f,0.0f);
-		resetMenuItem.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
-		menuScene.addMenuItem(resetMenuItem);
+		final IMenuItem createCharacterMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_CREATE_CHARACTER, this.mFont, "Create Character"), 1.0f,0.0f,0.0f, 0.0f,0.0f,0.0f);
+		createCharacterMenuItem.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
+		menuScene.addMenuItem(createCharacterMenuItem);
 		
 		final IMenuItem quitMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_QUIT, this.mFont, "QUIT"), 1.0f,0.0f,0.0f, 0.0f,0.0f,0.0f);
 		quitMenuItem.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
