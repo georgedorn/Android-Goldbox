@@ -13,7 +13,7 @@ public class Character implements Serializable {
 	public String name;
 	public HashMap<String, Integer> attributes;
 	public transient HashMap<String, Integer> attributes_calculated;
-	private Map<Enum, Integer>;
+	private EnumMap<Enum, Integer>; //@todo: figure out enums
 	
 	public Item headItem;
 	public Item leftHandItem;
