@@ -1,4 +1,4 @@
-package com.goldbox;
+package com.goldbox.ui;
 
 import org.anddev.andengine.engine.Engine;
 import org.anddev.andengine.engine.camera.Camera;

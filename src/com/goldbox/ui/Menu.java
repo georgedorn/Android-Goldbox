@@ -1,4 +1,4 @@
-package com.goldbox;
+package com.goldbox.ui;
 
 import javax.microedition.khronos.opengles.GL10;
 
@@ -19,6 +19,7 @@ import org.anddev.andengine.entity.scene.menu.MenuScene.IOnMenuItemClickListener
 import org.anddev.andengine.entity.scene.menu.item.IMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.TextMenuItem;
 import org.anddev.andengine.entity.scene.menu.item.decorator.ColorMenuItemDecorator;
+
 
 import android.content.Intent;
 import android.graphics.Color;
